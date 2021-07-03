@@ -1,0 +1,67 @@
+{% load static %}
+
+
+<html lang="en">
+    <head>
+        {% csrf_token %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="{%  static "css/style.css"%}" />
+        <title>Notes</title>
+    </head>
+{% csrf_token %}
+    <body>
+        <!--navigation bar-->
+        <header>
+            {% csrf_token %}
+            <nav>
+                {% csrf_token %}
+
+                <ul>
+                    {% csrf_token %}
+                    <li class="img"><img src="{%  static "images/note.png" %}"/></li>
+{#                                  ем тука съм оплескал нещо взима първото id от notes щото го изисква пък всички notes показва, а ако изтриеш note с id=1 ще се счупи #}
+                    <li><a href="{% url 'note details' 1 %}">Notes</a></li>
+                    <li class="right">
+                        <a href="{% url 'add note' %}">Add Note</a>
+                        <a href="{% url 'profile page' %}">Profile</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </header>
+        <!--end navigation bar-->
+
+        <div class="body">
+            {% csrf_token %}
+            <!--headings-->
+            <h1>Your Profile</h1>
+            <!--end headings-->
+
+            <!--profile details container TODO-->
+            <div class="note-container">
+                {% csrf_token %}
+                <h2>
+                    {{ profile.first_name}} {{ profile.last_name }}
+                    <img src="{{  profile.image_url }}"/>
+                </h2>
+                <p>Age: {{ profile.age }} </p>
+                <div>
+                    <p>All notes: {{ notes.count }}</p>
+                </div>
+                <div class="right">
+                    {% csrf_token %}
+{#                    delete/1  vinagi e edno 6tot imame edin user    #}
+                    <a class="button delete" href="{% url 'delete user' %}">Delete</a>
+                </div>
+            </div>
+            <!--end profile details container-->
+        </div>
+
+        <!--footer-->
+        <footer>
+            <div>Python Web Basics Exam @SoftUni</div>
+        </footer>
+        <!--end footer-->
+    </body>
+</html>
